@@ -27,6 +27,8 @@
 
   <body>
     <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %}>
+      {% section 'notice-banner' %}
+
       {% section 'header' %}
 
       <main id="main" role="main">

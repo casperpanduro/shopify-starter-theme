@@ -1,28 +1,32 @@
-<div class="container">
-  <a href="{{ routes.root_url }}">
-    Logo
-  </a>
+<header class="h-20 flex flex-row items-center fixed w-100 left-0 right-0 top-0 bg-white mt-7">
+  <div class="container">
+    <div class="flex justify-between flex-row w-100 grid-cols-3 gap-10 items-center">
+      <a href="{{ routes.root_url }}">
+        <img class="max-w-[110px]" src="https://www.aarke.com/static/version1650540419/frontend/Improove/aarke/en_GB/images/logo.svg" alt="">
+      </a>
+      <div class="text-left grow">
+        {% render 'layout-menu' %}
+      </div>
+      <div>
+        {% if shop.customer_accounts_enabled %}
+          {% if customer %}
+            <a href="{{ routes.account_url }}">
+              {{ 'action.account' | t }}
+            </a>
+            {{ 'action.log_out' | t | customer_logout_link }}
+          {% else %}
+            {{ 'action.log_in' | t | customer_login_link }}
+            {{ 'action.register' | t | customer_register_link }}
+          {% endif %}
+        {% endif %}
 
-  {% render 'layout-menu' %}
-
-  <div>
-    {% if shop.customer_accounts_enabled %}
-      {% if customer %}
-        <a href="{{ routes.account_url }}">
-          {{ 'action.account' | t }}
+        <a href="{{ routes.cart_url }}">
+          {{ 'action.cart' | t }}
         </a>
-        {{ 'action.log_out' | t | customer_logout_link }}
-      {% else %}
-        {{ 'action.log_in' | t | customer_login_link }}
-        {{ 'action.register' | t | customer_register_link }}
-      {% endif %}
-    {% endif %}
-
-    <a href="{{ routes.cart_url }}">
-      {{ 'action.cart' | t }}
-    </a>
+      </div>
+    </div>
   </div>
-</div>
+</header>
 
 {% schema %}
 {

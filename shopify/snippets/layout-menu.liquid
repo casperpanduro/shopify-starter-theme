@@ -1,7 +1,7 @@
-<div class="{{ class | default: '' }}" style="{{ style | default: '' }}">
+<ul class="{{ class | default: 'flex gap-6' }}" style="{{ style | default: '' }}">
   {% for link in linklists.main-menu.links %}
-    <div>
-      <a href="{{ link.url }}">
+    <li>
+      <a href="{{ link.url }}" class="font-medium">
         {{ link.title | escape }}
       </a>
 
@@ -14,6 +14,6 @@
           {% endfor %}
         </div>
       {% endif %}
-    </div>
+    </li>
   {% endfor %}
-</div>
+</ul>
