@@ -8,7 +8,11 @@ const path = require('path')
 
 module.exports = {
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['muli', 'sans-serif']
+      }
+    },
     container: {
       center: true,
       padding: '1rem'

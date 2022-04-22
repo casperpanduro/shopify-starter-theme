@@ -1,0 +1,12 @@
+<section class="py-8">
+    <div class="container">
+        <h1 class="text-[60px] font-bold">{{ collection | json }}</h1>
+        {% paginate collection.products by 20 %}
+            {% for product in collection.products %}
+                <!-- product info -->
+            {% endfor %}
+
+            {{ paginate | default_pagination }}
+        {% endpaginate %}
+    </div>
+</section>

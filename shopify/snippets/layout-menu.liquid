@@ -1,7 +1,7 @@
-<ul class="{{ class | default: 'flex gap-6' }}" style="{{ style | default: '' }}">
+<ul class="{{ class | default: 'flex gap-8 lg:px-5 ' }}" style="{{ style | default: '' }}">
   {% for link in linklists.main-menu.links %}
     <li>
-      <a href="{{ link.url }}" class="font-medium">
+      <a href="{{ link.url }}" class="font-semibold">
         {{ link.title | escape }}
       </a>
 

@@ -1,13 +1,30 @@
-<header class="h-20 flex flex-row items-center fixed w-100 left-0 right-0 top-0 bg-white mt-7">
+<header class="h-16 md:h-20 flex flex-row items-center w-100 left-0 right-0 top-0 bg-white">
   <div class="container">
     <div class="flex justify-between flex-row w-100 grid-cols-3 gap-10 items-center">
+      <div class="block lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </div>
       <a href="{{ routes.root_url }}">
-        <img class="max-w-[110px]" src="https://www.aarke.com/static/version1650540419/frontend/Improove/aarke/en_GB/images/logo.svg" alt="">
+        <img class="max-w-[80px] md:max-w-[110px]" src="https://www.aarke.com/static/version1650540419/frontend/Improove/aarke/en_GB/images/logo.svg" alt="">
       </a>
-      <div class="text-left grow">
+      <div class="hidden lg:block text-left grow">
         {% render 'layout-menu' %}
       </div>
-      <div>
+      <a href="{{ routes.cart_url }}" class="md:hidden">
+        <div class="relative flex items-center gap-2">
+          <div class="relative">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            {% if cart.item_count > 0 %}
+              <span class="border rounded-full w-4 h-4 border-slate-500 bottom-0 right-0 bg-slate-500 block absolute text-white text-[10px] flex items-center justify-center">{{ cart.item_count }}</span>
+            {% endif %}
+          </div>
+        </div>
+      </a>
+      <div class="hidden md:block">
         {% if shop.customer_accounts_enabled %}
           {% if customer %}
             <a href="{{ routes.account_url }}">
@@ -19,10 +36,28 @@
             {{ 'action.register' | t | customer_register_link }}
           {% endif %}
         {% endif %}
+        <div class="flex align-center gap-5">
 
-        <a href="{{ routes.cart_url }}">
-          {{ 'action.cart' | t }}
-        </a>
+          <a href="{{ routes.account_login_url }}">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          </a>
+
+          <a href="{{ routes.cart_url }}">
+            <div class="relative flex items-center gap-2">
+              <div class="relative">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+                {% if cart.item_count > 0 %}
+                  <span class="border rounded-full w-4 h-4 border-slate-500 bottom-0 right-0 bg-slate-500 block absolute text-white text-[10px] flex items-center justify-center">{{ cart.item_count }}</span>
+                {% endif %}
+              </div>
+              <span class="hidden lg:inline font-medium text-xs font-semibold">Shopping bag</span>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
   </div>
