@@ -1,25 +1,39 @@
-<div class="flex flex-col justify-between w-full">
-    <div class="p-8 w-full">
-        <h2 class="text-lg font-semibold">Shopping bag</h2>
-        <hr class="my-5">
-        {% if cart.item_count == 0 %}
-            <p class="font-semibold">You have no items in your shopping bag.</p>
-        {% else %}
+<panel-slide :active="$store.state.cart.open" @close="$store.dispatch('cart/close')">
+    <div class="flex flex-col justify-between w-full">
+        <div class="p-8 w-full">
+            <h2 class="text-lg font-semibold">Shopping bag</h2>
+            <hr class="my-5">
+            {% if cart.item_count == 0 %}
+                <p class="font-semibold">You have no items in your shopping bag.</p>
+            {% else %}
+                {% for item in cart.items %}
+                    <div class="flex py-3">
+                        <div>
+                            {{ item.image | image_url: width: 80, height: 80 | image_tag: srcset: nil }}
 
-        {% endif %}
-    </div>
-    {% if cart.item_count > 0 %}
-    <div class="bg-gray-200 p-8 w-full">
-        <hr class="border-black mb-5">
-        <div class="flex justify-between items-center gap-3">
-            <div>
-                <p class="font-bold text-lg">Subtotal</p>
-            </div>
-            <div>
-                <p class="font-bold text-lg">{{ cart.total_price | money_with_currency }}</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold">{{ item.title }}</p>
+
+                        </div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            {% endif %}
+        </div>
+        {% if cart.item_count > 0 %}
+        <div class="bg-gray-200 p-8 w-full">
+            <hr class="border-black mb-5">
+            <div class="flex justify-between items-center gap-3">
+                <div>
+                    <p class="font-bold text-lg">Subtotal</p>
+                </div>
+                <div>
+                    <p class="font-bold text-lg">{{ cart.total_price | money_with_currency }}</p>
+                </div>
             </div>
         </div>
+        {% endif %}
     </div>
-    {% endif %}
-</div>
+</panel-slide>
 
